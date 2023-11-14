@@ -8,11 +8,17 @@ import {
 } from "react-icons/bi";
 import { BsHeart, BsShare, BsShareFill, BsThreeDots } from "react-icons/bs";
 interface PostCardData {
-  title: string;
-  body: string;
+  post: string;
+  likes: number;
+  imageUrl?: string;
   username: string;
 }
-export default function PostCard({ title, body, username }: PostCardData) {
+export default function PostCard({
+  post,
+  likes,
+  imageUrl,
+  username,
+}: PostCardData) {
   return (
     <div className="flex  space-x-1 space-y-3">
       <div className="flex flex-col items-center space-y-2">
@@ -28,7 +34,7 @@ export default function PostCard({ title, body, username }: PostCardData) {
           </div>
         </div>
         <div>
-          <p className=" text-xs text-gray-300">{body}</p>
+          <p className=" text-xs text-gray-300">{post}</p>
         </div>
         <div className="flex items-center space-x-4">
           <BsHeart />

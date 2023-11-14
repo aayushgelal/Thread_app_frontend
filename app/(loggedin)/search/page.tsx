@@ -20,7 +20,7 @@ export default function SearchPage() {
         user.name.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
-  }, [searchValue]);
+  }, [searchValue, Users]);
 
   return (
     <div className=" flex-1 w-4/6 self-center   ">
@@ -35,7 +35,7 @@ export default function SearchPage() {
           <ul>
             {searchResults.map((result: SuggestedUser, index) => {
               return (
-                <div className="mb-2">
+                <div className="mb-2" key={index}>
                   <SuggestedCard
                     name={result.name}
                     username={result.username}
