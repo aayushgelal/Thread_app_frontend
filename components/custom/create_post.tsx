@@ -41,8 +41,7 @@ const CreatePost = ({
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setShowLoggingInAlert(true);
-    console.log(data);
-    console.log(username);
+
     createPost({
       variables: {
         username: username,
@@ -50,7 +49,6 @@ const CreatePost = ({
         imageLink: data.imageLink ?? null,
       },
     }).then(() => {
-      console.log(data);
       setShowLoggingInAlert(false);
     });
 

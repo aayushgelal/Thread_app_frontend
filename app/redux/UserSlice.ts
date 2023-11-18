@@ -7,7 +7,7 @@ export interface User {
   lastName: string | null;
 }
 const CurrentUser: User | null = {
-  username: "aayushgelal",
+  username: null,
   email: null,
   profileImageURL: null,
   firstName: null,

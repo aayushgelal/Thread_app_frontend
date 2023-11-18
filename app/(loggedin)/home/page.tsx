@@ -11,13 +11,17 @@ import { useSelector } from "react-redux";
 
 const getAllPosts = gql`
   query UserLogin {
-    getAllPosts(orderBy: { field: createdTime, direction: DESC }) {
+    getAllPosts {
       id
       likes
       imageUrl
       post
       userId
       createdTime
+      user {
+        username
+        profileImageURL
+      }
     }
   }
 `;
@@ -29,6 +33,11 @@ const getNewPosts = gql`
       imageUrl
       post
       userId
+      createdTime
+      user {
+        username
+        profileImageURL
+      }
     }
   }
 `;
@@ -39,9 +48,10 @@ interface Posts {
   imageUrl: string;
   post: string;
   userId: string;
+  createdTime: Date;
 }
 export default function HomePage() {
-  const [posts, setposts] = useState<[Posts] | null>(null);
+  const [posts, setposts] = useState<Posts[] | null>(null);
   const router = useRouter();
   const { data, loading, error } = useQuery(getAllPosts);
   const NewPost = useSubscription(getNewPosts);
@@ -49,11 +59,15 @@ export default function HomePage() {
   if (!loggedUser.username) {
     router.push("/login");
   }
-
+  console.log(NewPost.data);
   useEffect(() => {
+
     if (data) {
-      console.log("DATA", data.getAllPosts);
-      setposts(data.getAllPosts);
+      let arrangedData: Posts[] = [...data.getAllPosts].sort(
+        (a: Posts, b: Posts) =>
+          new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
+      );
+      setposts([...arrangedData]);
     }
   }, [data]);
 
