@@ -13,13 +13,13 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://thread-app-backend.vercel.app/graphql",
   credentials: "include", // added this part
 });
 // Create a WebSocket link:
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:5000/graphql",
+    url: "ws://thread-app-backend.vercel.app/",
   })
 );
 
