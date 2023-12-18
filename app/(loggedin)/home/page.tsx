@@ -59,7 +59,21 @@ export default function HomePage() {
   if (!loggedUser.username) {
     router.push("/login");
   }
-  console.log(NewPost.data);
+  useEffect(() => {
+
+    if (NewPost.error) {
+      console.error("Error in subscription:", NewPost.error);
+    }
+  
+    if (NewPost.data) {
+      setposts(() => {
+      posts?.unshift(NewPost.data.postCreated)
+      return posts
+      }
+      );
+      // Do something with the received data
+    }
+  }, [NewPost.data]);
   useEffect(() => {
 
     if (data) {

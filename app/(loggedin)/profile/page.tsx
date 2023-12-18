@@ -11,7 +11,6 @@ export default function ProfilePage() {
       <hr></hr>
       <br></br>
       <CreatePost username="Aayush Gelal" profileLink="" />
-      <PostCard username="Aayush Gelal" title="Hello" body="from Nepal" />
     </div>
   );
 }
